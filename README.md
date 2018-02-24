@@ -27,12 +27,15 @@ Each style can be used on any OS.
 Some examples:
 
 Vienna style on Windows 7:
+
 ![Vienna style on Windows 7](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/win7.png)
 
 Kool style on Manjaro KDE with Breeze Dark theme:
+
 ![Kool style on Manjaro KDE with Breeze Dark theme](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/kde.png)
 
 Threshold style on Manjaro LXQt with gtk2 theme:
+
 ![Threshold style on Manjaro LXQt with gtk2 theme](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/lxqt.png)
 
 Building
