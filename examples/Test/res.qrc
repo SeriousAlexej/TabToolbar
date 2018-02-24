@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/light_bulb.png</file>
+        <file>icons/48px-AddTexture.png</file>
+        <file>icons/48px-Antialias_Icon.svg.png</file>
+        <file>icons/48px-Package-x-generic.svg.png</file>
+        <file>icons/48px-Edit-redo.png</file>
+        <file>icons/48px-Edit-undo.png</file>
+        <file>icons/48px-System-log-out.png</file>
+        <file>icons/Scale.png</file>
+        <file>icons/48px-View-zoom-fit.png</file>
+        <file>icons/Help-browser.png</file>
+        <file>icons/Flaps_mode.png</file>
+        <file>icons/48px-Printer.png</file>
+        <file>icons/48px-Image-x-Remove.png</file>
+        <file>icons/48px-Preferences-system.png</file>
+        <file>icons/Move_mode.png</file>
+        <file>icons/48px-View-refresh.png</file>
+        <file>icons/48px-Go-bottom.png</file>
+        <file>icons/stupid_logo.png</file>
+        <file>icons/48px-Document-new.png</file>
+        <file>icons/48px-Document-open.png</file>
+        <file>icons/48px-Document-save-as.png</file>
+        <file>icons/48px-Document-save.png</file>
+        <file>icons/48px-Image-x-generic.png</file>
+        <file>icons/48px-Polypaint.png</file>
+        <file>icons/Select_mode.png</file>
+        <file>icons/close.png</file>
+    </qresource>
+    <qresource prefix="/tt">
+        <file>tabtoolbar.json</file>
+    </qresource>
+</RCC>

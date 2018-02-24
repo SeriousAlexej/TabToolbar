@@ -1,0 +1,119 @@
+QToolBar[TabToolbar="true"] {
+border: 0px;
+background-color: %ToolbarBackgroundColor%;
+padding: 0px;
+}
+
+QToolButton[TTHide="true"] {
+color: %HideArrowColor%;
+}
+
+QScrollArea {
+padding: 0px;
+}
+
+QWidget[TTPage="true"] {
+padding: 0px;
+background-color: %PaneColor%;
+border: 0px;
+border-top: 1px solid %BorderColor%;
+}
+
+QTabWidget[TTWidget="true"] {
+background-color: transparent;
+}
+
+QTabWidget[TTWidget="true"]::pane {
+border-radius: 0px;
+border: 0px;
+background-color: transparent;
+padding: 0px;
+top: 1px;
+border-bottom: 1px solid %BorderColor%;
+}
+
+QTabWidget[TTWidget="true"]::tab-bar {
+top: 2px;
+background-color: transparent;
+}
+
+QTabBar[TTTab="true"] {
+background-color: transparent;
+}
+
+QTabBar[TTTab="true"]::tab {
+margin-right: %TabSpacing%;
+font-family: "DejaVu Sans Condensed";
+color: %TabFontColor%;
+background-color: transparent;
+border-top-left-radius: %TabBorderRadius%;
+border-top-right-radius: %TabBorderRadius%;
+min-width: 50px;
+min-height: 20px;
+}
+
+QTabBar[TTTab="true"][TTSpecial="true"]::tab::first {
+border-top-left-radius: 0px;
+color: %TabSpecialFontColor%;
+background-color: %TabSpecialColor%;
+border-top: 1px solid %TabSpecialBorderColor%;
+border-bottom: 1px solid %TabSpecialBorderColor%;
+border-left: 1px solid %TabSpecialBorderColorSide%;
+border-right: 1px solid %TabSpecialBorderColorSide%;
+}
+
+QTabBar[TTTab="true"][TTSpecial="true"]::tab::first::hover {
+padding-top: 2px;
+margin-bottom: 0px;
+border-top: 1px solid %TabSpecialHoverBorderColor%;
+border-bottom: 1px solid %TabSpecialHoverBorderColor%;
+border-left: 1px solid %TabSpecialHoverBorderColorSide%;
+border-right: 1px solid %TabSpecialHoverBorderColorSide%;
+background-color: %TabSpecialHoverColor%;
+}
+
+QTabBar[TTTab="true"]::tab::selected::enabled {
+padding-top: 1px;
+border-top: 1px solid %BorderColor%;
+border-left: 1px solid %BorderColor%;
+border-right: 1px solid %BorderColor%;
+border-bottom: 0px solid transparent;
+background-color: %TabSelectedColor%;
+}
+
+QTabBar[TTTab="true"]::tab::selected::!enabled,
+QTabBar[TTTab="true"]::tab::!selected::enabled{
+padding-top: 2px;
+}
+
+QTabBar[TTTab="true"]::tab::hover::enabled {
+padding-bottom: 0px;
+border-top: 1px solid %TabHoverBorderColorTop%;
+border-left: 1px solid %TabHoverBorderColorSide%;
+border-right: 1px solid %TabHoverBorderColorSide%;
+}
+
+QTabBar[TTTab="true"]::tab::!selected::hover {
+padding-top: 2px;
+border-top: 1px solid %TabUnselectedHoverBorderColorTop%;
+border-left: 1px solid %TabUnselectedHoverBorderColorSide%;
+border-right: 1px solid %TabUnselectedHoverBorderColorSide%;
+border-bottom: 0px solid transparent;
+margin-bottom: 1px;
+background-color: %TabUnselectedColor%;
+}
+
+QFrame[TTSeparator="true"] {
+border: 1px solid transparent;
+border-right-color: %SeparatorColor%;
+}
+
+QLabel[TTGroupName="true"] {
+color: %GroupNameColor%;
+}
+
+QFrame[TTHorizontalFrame="true"] {
+border-radius: %HorizontalFrameBorderSize%;
+border: 1px solid %HorizontalFrameBorderColor%;
+background-color: %HorizontalFrameBackgroundColor%;
+}

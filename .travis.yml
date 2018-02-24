@@ -1,0 +1,23 @@
+language: c++
+
+sudo: required
+dist: trusty
+group: deprecated-2017Q4
+
+compiler:
+  - gcc
+
+os:
+  - linux
+
+before_install:
+  - sudo add-apt-repository --yes ppa:beineri/opt-qt591-trusty
+  - sudo apt-get update
+  - sudo apt-get install qt59-meta-full
+
+before_script:
+  - QT_ENV_SCRIPT=$(find /opt -name 'qt*-env.sh')
+  - source $QT_ENV_SCRIPT
+
+script:
+  - cmake -DCMAKE_BUILD_TYPE=Release -DTT_BUILD_EXAMPLES=TRUE && cmake --build .
