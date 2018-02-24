@@ -34,7 +34,7 @@
  #if defined(TT_BUILDING_DLL)
   #define TT_API __attribute__((visibility("default")))
  #else
-  #define TT_API __attribute__((visibility("hidden")))
+  #define TT_API
  #endif
     
 #endif
