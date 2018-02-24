@@ -3,7 +3,9 @@ add_definitions(-DTT_BUILDING_DLL)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt5 5.3 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt5Core       5.3 REQUIRED)
+find_package(Qt5Gui        5.3 REQUIRED)
+find_package(Qt5Widgets    5.3 REQUIRED)
 
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/TabToolbar)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/TabToolbar)
