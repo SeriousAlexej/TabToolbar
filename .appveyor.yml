@@ -7,7 +7,7 @@ clone_folder: c:\projects\tt
 clone_depth: 1
 
 before_build:
-  - set CMAKE_PREFIX_PATH=C:\Qt\5.9.2\msvc2015\
+  - set CMAKE_PREFIX_PATH=C:\Qt\5.3\msvc2015\
   - cmake -G "Visual Studio 14 2015" -DTT_BUILD_EXAMPLES=TRUE
 
 build:
