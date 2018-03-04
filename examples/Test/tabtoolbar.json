@@ -7,13 +7,16 @@
   ],
   "tabs":[
     {
+      "displayName":"File",
       "name":"File",
       "groups":[]
     },
     {
+      "displayName":"Edit",
       "name":"Edit",
       "groups":[
         {
+          "displayName":"Styles",
           "name":"Styles",
           "content":[
             {
@@ -36,9 +39,11 @@
       ]
     },
     {
+      "displayName":"View",
       "name":"View",
       "groups":[
         {
+          "displayName":"Group 1",
           "name":"Group 1",
           "content":[
             {
@@ -63,6 +68,7 @@
           ]
         },
         {
+          "displayName":"Group 2",
           "name":"Group 2",
           "content":[
             {
@@ -110,6 +116,7 @@
           ]
         },
         {
+          "displayName":"Group 3",
           "name":"Group 3",
           "content":[
             {
@@ -192,8 +199,22 @@
       ]
     },
     {
+      "displayName":"Help",
       "name":"Help",
-      "groups":[]
+      "groups":[
+        {
+          "displayName":"",
+          "name":"HelpGroup",
+          "content":[
+            {
+              "itemType":"action",
+              "type":"delayedPopup",
+              "name":"actionHelp",
+              "menu":null
+            }
+          ]
+        }
+      ]
     }
   ]
 }

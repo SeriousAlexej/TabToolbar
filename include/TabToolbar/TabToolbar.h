@@ -72,8 +72,7 @@ private:
     const unsigned groupMaxHeight;
     bool           hasSpecialTab = false;
     int            currentIndex = 0;
-    int            height = -1;
-    unsigned       maxHeight = 9999;
+    unsigned       maxHeight = QWIDGETSIZE_MAX;
     QFrame*        cornerActions = nullptr;
     QAction*       hideAction = nullptr;
     QToolButton*   hideButton = nullptr;

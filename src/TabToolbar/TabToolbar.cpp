@@ -212,12 +212,9 @@ void TabToolbar::CurrentTabChanged(int index)
 
 void TabToolbar::HideAt(int index)
 {
-    if(height == -1)
-        height = tabBar->tabBar()->height() + 2;
-
     if(isMinimized)
     {
-        tabBar->setMaximumHeight(height);
+        tabBar->setMaximumHeight(tabBar->tabBar()->height() + 2);
         isShown = false;
     } else {
         tabBar->setCurrentIndex(index);

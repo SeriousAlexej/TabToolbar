@@ -108,16 +108,18 @@ TabToolbar* Builder::CreateTabToolbar(const QString& configPath)
     for(int i=0; i<tabs.size(); i++)
     {
         const QJsonObject tab = tabs.at(i).toObject();
+        const QString pageDisplayName = tab["displayName"].toString();
         const QString pageName = tab["name"].toString();
-        Page* page = tt->AddPage(pageName);
+        Page* page = tt->AddPage(pageDisplayName);
         guiWidgets[pageName] = page;
 
         const QJsonArray groups = tab["groups"].toArray();
         for(int j=0; j<groups.size(); j++)
         {
             const QJsonObject groupObject = groups.at(j).toObject();
+            const QString groupDisplayName = groupObject["displayName"].toString();
             const QString groupName = groupObject["name"].toString();
-            Group* group = page->AddGroup(groupName);
+            Group* group = page->AddGroup(groupDisplayName);
             guiWidgets[groupName] = group;
 
             const QJsonArray content = groupObject["content"].toArray();
