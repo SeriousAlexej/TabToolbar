@@ -214,13 +214,20 @@ void TabToolbar::HideAt(int index)
 {
     if(isMinimized)
     {
-        tabBar->setMaximumHeight(tabBar->tabBar()->height() + 2);
+        const int minHeight = tabBar->tabBar()->height() + 2;
+        tabBar->setMaximumHeight(minHeight);
+        tabBar->setMinimumHeight(minHeight);
+        setMaximumHeight(minHeight);
+        setMinimumHeight(minHeight);
         isShown = false;
     } else {
         tabBar->setCurrentIndex(index);
         if(!isShown)
         {
             tabBar->setMaximumHeight(maxHeight);
+            tabBar->setMinimumHeight(maxHeight);
+            setMaximumHeight(maxHeight);
+            setMinimumHeight(maxHeight);
             tabBar->adjustSize();
         }
         setFocus();
@@ -250,6 +257,7 @@ void TabToolbar::AdjustVerticalSize(unsigned vSize)
     {
 		maxHeight = vSize + tabBar->tabBar()->height() + 6;
         setMaximumHeight(maxHeight);
+        setMinimumHeight(maxHeight);
     });
 }
 
