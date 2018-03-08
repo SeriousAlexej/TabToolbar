@@ -103,6 +103,20 @@ TabToolbar* Builder::CreateTabToolbar(const QString& configPath)
     const QJsonArray cornerActions = root["cornerActions"].toArray();
     for(int i=0; i<cornerActions.size(); i++)
         tt->AddCornerAction(actionsMap[cornerActions.at(i).toString()]);
+    
+    const QJsonArray menusList = root["menus"].toArray();
+    for(int i=0; i<menusList.size(); i++)
+    {
+        const QJsonObject menuObject = menusList.at(i).toObject();
+        QMenu* menu = new QMenu((QWidget*)parent());
+        menu->setObjectName(menuObject["name"].toString());
+        menusMap[menu->objectName()] = menu;
+        QList<QAction*> actionsList;
+        const QJsonArray menuActions = menuObject["actions"].toArray();
+        for(int j=0; j<menuActions.size(); j++)
+            actionsList.append(actionsMap[menuActions.at(j).toString()]);
+        menu->addActions(actionsList);
+    }
 
     const QJsonArray tabs = root["tabs"].toArray();
     for(int i=0; i<tabs.size(); i++)

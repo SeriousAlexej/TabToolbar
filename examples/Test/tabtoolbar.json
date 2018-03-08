@@ -5,6 +5,15 @@
   "cornerActions":[
     "actionHelp"
   ],
+  "menus":[
+    {
+      "name":"dummyMenu",
+      "actions":[
+        "actionDummy",
+        "actionHelp"
+      ]
+    }
+  ],
   "tabs":[
     {
       "displayName":"File",

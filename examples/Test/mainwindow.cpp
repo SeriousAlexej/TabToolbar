@@ -39,9 +39,6 @@ CMainWindow::CMainWindow(QWidget* parent) :
 {
     ui->setupUi(this);
     ui->statusBar->addPermanentWidget(new QLabel("Some fancy status."));
-    QMenu* menu = new QMenu(this);
-    menu->setObjectName("dummyMenu");
-    menu->addActions({ui->actionDummy});
 
     tt::Builder ttb(this);
     ttb.SetCustomWidgetCreator("textEdit", []() { return new QTextEdit(); });
