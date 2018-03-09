@@ -24,9 +24,11 @@
 #include <QSize>
 #include <QApplication>
 #include <QStyle>
+#include <QPainter>
 #include <TabToolbar/Group.h>
 #include <TabToolbar/SubGroup.h>
 #include <TabToolbar/TabToolbar.h>
+#include "CompactToolButton.h"
 
 using namespace tt;
 
@@ -121,20 +123,32 @@ void Group::AddSeparator()
     innerLayout->addWidget(CreateSeparator());
 }
 
+void Group::UseCompactButtons(bool use)
+{
+    useCompactButtons = use;
+}
+
 void Group::AddAction(QToolButton::ToolButtonPopupMode type, QAction* action, QMenu* menu)
 {
-    const int iconSize = QApplication::style()->pixelMetric(QStyle::PM_LargeIconSize);
-    QToolButton* btn = new QToolButton(this);
-    btn->setProperty("TTInternal", QVariant(true));
-    btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    btn->setAutoRaise(true);
-    btn->setDefaultAction(action);
-    btn->setIconSize(QSize(iconSize, iconSize));
-    btn->setPopupMode(type);
-    if(menu)
-        btn->setMenu(menu);
-    btn->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
-    innerLayout->addWidget(btn);
+    if(type == QToolButton::MenuButtonPopup && useCompactButtons)
+    {
+        innerLayout->addWidget(new CompactToolButton(action, menu, this));
+    }
+    else
+    {
+        const int iconSize = QApplication::style()->pixelMetric(QStyle::PM_LargeIconSize);
+        QToolButton* btn = new QToolButton(this);
+        btn->setProperty("TTInternal", QVariant(true));
+        btn->setAutoRaise(true);
+        btn->setDefaultAction(action);
+        btn->setIconSize(QSize(iconSize, iconSize));
+        btn->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+        btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+        btn->setPopupMode(type);
+        if(menu)
+            btn->setMenu(menu);
+        innerLayout->addWidget(btn);
+    }
 }
 
 void Group::AddWidget(QWidget* widget)

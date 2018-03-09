@@ -18,6 +18,8 @@ set(SRC_LIST
     ${INCROOT}/Page.h
     ${SRCROOT}/Builder.cpp
     ${INCROOT}/Builder.h
+    ${SRCROOT}/CompactToolButton.cpp
+    ${SRCROOT}/CompactToolButton.h
     ${SRCROOT}/Group.cpp
     ${INCROOT}/Group.h
     ${SRCROOT}/SubGroup.cpp

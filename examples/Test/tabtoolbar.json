@@ -2,6 +2,7 @@
   "groupHeight":75,
   "groupRowCount":3,
   "specialTab":true,
+  "compactButtons":false,
   "cornerActions":[
     "actionHelp"
   ],

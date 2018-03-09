@@ -64,6 +64,7 @@ TabToolbar* Builder::CreateTabToolbar(const QString& configPath)
     const int groupHeight = root["groupHeight"].toInt();
     const int groupRowCount = root["groupRowCount"].toInt();
     const bool hasSpecialTab = root["specialTab"].toBool();
+    const bool compactButtons = root.contains("compactButtons") ? root["compactButtons"].toBool() : false;
     TabToolbar* tt = new TabToolbar((QWidget*)parent(), groupHeight, groupRowCount);
 
     auto CreateCustomWidget = [this, tt](const QString& name, const QJsonObject& item)
@@ -134,6 +135,7 @@ TabToolbar* Builder::CreateTabToolbar(const QString& configPath)
             const QString groupDisplayName = groupObject["displayName"].toString();
             const QString groupName = groupObject["name"].toString();
             Group* group = page->AddGroup(groupDisplayName);
+            group->UseCompactButtons(compactButtons);
             guiWidgets[groupName] = group;
 
             const QJsonArray content = groupObject["content"].toArray();

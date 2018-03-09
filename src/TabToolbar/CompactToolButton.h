@@ -1,7 +1,7 @@
 /*
     TabToolbar - a small utility library for Qt, providing tabbed toolbars
-	Copyright (C) 2018 Oleksii Sierov
-	
+    Copyright (C) 2018 Oleksii Sierov
+
     TabToolbar is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -15,40 +15,46 @@
     You should have received a copy of the GNU Lesser General Public License
     along with TabToolbar.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef TT_GROUP_H
-#define TT_GROUP_H
+#ifndef TT_COMPACT_TOOL_BUTTON_H
+#define TT_COMPACT_TOOL_BUTTON_H
 #include <QFrame>
-#include <QString>
-#include <QToolButton>
-#include <QHBoxLayout>
-#include <QVariant>
-#include <TabToolbar/API.h>
-#include <TabToolbar/SubGroup.h>
+#include <QColor>
 
 class QAction;
 class QMenu;
+class QToolButton;
 
 namespace tt
 {
 
-class TT_API Group : public QFrame
+class CompactToolButton: public QFrame
 {
     Q_OBJECT
 public:
-    explicit Group(const QString& name, QWidget* parent = nullptr);
+    enum class Hover
+    {
+        Top,
+        Bottom,
+        None
+    };
 
-    void        AddAction(QToolButton::ToolButtonPopupMode type, QAction* action, QMenu* menu = nullptr);
-    void        AddSeparator();
-    SubGroup*   AddSubGroup(SubGroup::Align align);
-    void        AddWidget(QWidget* widget);
-    void        UseCompactButtons(bool use);
+    CompactToolButton(QAction* action, QMenu* menu, QWidget* parent = nullptr);
+    virtual ~CompactToolButton() = default;
+
+    void SetHoverType(Hover type);
+
+protected:
+    bool event(QEvent* e) override;
+    void paintEvent(QPaintEvent*) override;
+    void GetBorderColor();
 
 private:
-    QFrame*     CreateSeparator();
-
-    QHBoxLayout* innerLayout;
-    bool         useCompactButtons;
+    Hover        hoverType = Hover::None;
+    QToolButton* upButton;
+    QToolButton* downButton;
+    QColor       borderColor;
 };
 
 }
+
 #endif

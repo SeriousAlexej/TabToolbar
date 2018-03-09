@@ -233,7 +233,7 @@ struct DefaultStylesRegistrar
             params->ToolbarBackgroundColor   = p.light;
             const float paneDimmCoeff = (p.window.lightnessF() > 0.5f ? 0.03529f : 0.1f);
             params->PaneColor                = dimmed(p.light, paneDimmCoeff);
-            const float borderDimmCoeff = (p.window.lightnessF() > 0.5f ? 0.08f : 0.2f);
+            const float borderDimmCoeff = (p.window.lightnessF() > 0.5f ? 0.15f : 0.3f);
             params->BorderColor              = dimmed(params->ToolbarBackgroundColor, borderDimmCoeff);
             params->GroupNameColor           = lcomb(p.text, p.light, 0.43f);
 
