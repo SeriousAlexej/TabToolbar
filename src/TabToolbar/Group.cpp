@@ -25,10 +25,13 @@
 #include <QApplication>
 #include <QStyle>
 #include <QPainter>
+#include <QProxyStyle>
+#include <QStyleOptionToolButton>
 #include <TabToolbar/Group.h>
 #include <TabToolbar/SubGroup.h>
 #include <TabToolbar/TabToolbar.h>
 #include "CompactToolButton.h"
+#include "ToolButtonStyle.h"
 
 using namespace tt;
 
@@ -145,6 +148,7 @@ void Group::AddAction(QToolButton::ToolButtonPopupMode type, QAction* action, QM
         btn->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
         btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         btn->setPopupMode(type);
+        btn->setStyle(new TTToolButtonStyle());
         if(menu)
             btn->setMenu(menu);
         innerLayout->addWidget(btn);

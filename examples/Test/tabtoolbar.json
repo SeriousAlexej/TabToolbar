@@ -2,7 +2,7 @@
   "groupHeight":75,
   "groupRowCount":3,
   "specialTab":true,
-  "compactButtons":false,
+  "compactButtons":true,
   "cornerActions":[
     "actionHelp"
   ],
@@ -133,6 +133,12 @@
               "itemType":"action",
               "type":"menuButtonPopup",
               "name":"actionSettings",
+              "menu":"dummyMenu"
+            },
+            {
+              "itemType":"action",
+              "type":"instantPopup",
+              "name":"actionPolypaint",
               "menu":"dummyMenu"
             },
             {

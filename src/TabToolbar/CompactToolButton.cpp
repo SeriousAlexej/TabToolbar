@@ -23,12 +23,57 @@
 #include <QStyle>
 #include <QApplication>
 #include <QLinearGradient>
+#include <QStylePainter>
+#include <QStyleOptionToolButton>
+#include <QResizeEvent>
 #include <TabToolbar/TabToolbar.h>
 #include <TabToolbar/StyleTools.h>
 #include "CompactToolButton.h"
+#include "ToolButtonStyle.h"
 
 namespace
 {
+class TTOverlayToolButton : public QToolButton
+{
+public:
+   TTOverlayToolButton(QWidget* parent) : QToolButton(parent)
+    {
+       setAutoRaise(true);
+       setAttribute(Qt::WA_NoSystemBackground);
+       setAttribute(Qt::WA_TranslucentBackground);
+       setAttribute(Qt::WA_TransparentForMouseEvents);
+       parent->installEventFilter(this);
+       lower();
+   }
+
+   bool paint = false;
+
+protected:
+   bool eventFilter(QObject* obj, QEvent* ev) override
+   {
+      if (obj == parent())
+      {
+         if (ev->type() == QEvent::Resize)
+            resize(static_cast<QResizeEvent*>(ev)->size());
+         else if (ev->type() == QEvent::ChildAdded)
+            lower();
+      }
+      return QWidget::eventFilter(obj, ev);
+   }
+
+   void paintEvent(QPaintEvent*) override
+   {
+       if(!paint)
+           return;
+
+       QStylePainter sp(this);
+       QStyleOptionToolButton opt;
+       initStyleOption(&opt);
+       opt.state |= QStyle::State_MouseOver;
+       sp.drawComplexControl(QStyle::CC_ToolButton, opt);
+   }
+};
+
 class TTHover : public QObject
 {
 public:
@@ -45,14 +90,12 @@ protected:
     {
         if(event->type() == QEvent::HoverLeave)
         {
-            toolButton->SetHoverType(tt::CompactToolButton::Hover::None);
+            toolButton->SetHover(false);
         }
         else if(event->type() == QEvent::HoverEnter)
         {
-            if(watched == upButton)
-                toolButton->SetHoverType(tt::CompactToolButton::Hover::Top);
-            else if(watched == downButton)
-                toolButton->SetHoverType(tt::CompactToolButton::Hover::Bottom);
+            if(watched == upButton || watched == downButton)
+                toolButton->SetHover(upButton->isEnabled());
         }
         if(watched == upButton)
         {
@@ -61,7 +104,10 @@ protected:
             else if(event->type() == QEvent::Show)
                 downButton->show();
             else if(event->type() == QEvent::EnabledChange)
+            {
                 downButton->setEnabled(upButton->isEnabled());
+                toolButton->SetHover(upButton->isEnabled() && upButton->underMouse());
+            }
         }
         return QObject::eventFilter(watched, event);
     }
@@ -77,16 +123,18 @@ namespace tt
 {
 
 CompactToolButton::CompactToolButton(QAction* action, QMenu* menu, QWidget* parent) :
-    QFrame(parent),
-    borderColor(Qt::transparent)
+    QFrame(parent)
 {
+    overlay = new TTOverlayToolButton(this);
+
     const int iconSize = QApplication::style()->pixelMetric(QStyle::PM_LargeIconSize);
     upButton = new QToolButton(this);
     upButton->setProperty("TTInternal", QVariant(true));
     upButton->setAutoRaise(true);
     upButton->setDefaultAction(action);
     upButton->setIconSize(QSize(iconSize, iconSize));
-    upButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+    upButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+    upButton->setStyle(new TTToolButtonStyle());
 
     QVBoxLayout* l = new QVBoxLayout(this);
     l->setMargin(0);
@@ -104,12 +152,15 @@ CompactToolButton::CompactToolButton(QAction* action, QMenu* menu, QWidget* pare
     downButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
     downButton->setPopupMode(QToolButton::InstantPopup);
     downButton->setMinimumHeight(25);
-    downButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+    downButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
     downButton->setText(action->text());
+    downButton->setToolTip(action->toolTip());
+    downButton->setStyle(new TTToolButtonStyle());
+
     if(menu)
     {
         downButton->setMenu(menu);
-        QObject::connect(menu, &QMenu::aboutToHide, this, [this]{ SetHoverType(Hover::None); });
+        QObject::connect(menu, &QMenu::aboutToHide, this, [this]{ SetHover(false); });
     }
     l->addWidget(downButton);
     setLayout(l);
@@ -117,75 +168,12 @@ CompactToolButton::CompactToolButton(QAction* action, QMenu* menu, QWidget* pare
     TTHover* hover = new TTHover(this, upButton, downButton);
     upButton->installEventFilter(hover);
     downButton->installEventFilter(hover);
-
-    QTimer::singleShot(500, [this] { GetBorderColor(); });
 }
 
-void CompactToolButton::SetHoverType(Hover type)
+void CompactToolButton::SetHover(bool hover)
 {
-    hoverType = type;
+    static_cast<TTOverlayToolButton*>(overlay)->paint = hover;
     update();
-}
-
-bool CompactToolButton::event(QEvent* e)
-{
-    if(e->type() == QEvent::StyleChange)
-        QTimer::singleShot(500, [this] { GetBorderColor(); update(); });
-    return QFrame::event(e);
-}
-
-void CompactToolButton::paintEvent(QPaintEvent*)
-{
-    if(hoverType == Hover::None || !upButton->isEnabled())
-        return;
-
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing, false);
-    painter.setBrush(Qt::NoBrush);
-
-    QRect rect(0, 1, width()-1, height()-3);
-
-    QLinearGradient gradient;
-    gradient.setColorAt(0.0f, Qt::transparent);
-    gradient.setColorAt(downButton->height()*1.0f/rect.height(), borderColor);
-    gradient.setColorAt(1.0f, borderColor);
-
-    if(hoverType == Hover::Bottom)
-    {
-        gradient.setStart(0.0f, rect.height());
-        gradient.setFinalStop(0.0f, 0.0f);
-    }
-    else
-    {
-        gradient.setStart(0.0f, 0.0f);
-        gradient.setFinalStop(0.0f, rect.height());
-    }
-    QPen pen(QBrush(gradient), 1.0f);
-    painter.setPen(pen);
-
-    painter.drawRect(rect);
-}
-
-void CompactToolButton::GetBorderColor()
-{
-    QObject* par = this;
-    do
-    {
-        par = par->parent();
-        const TabToolbar* toolbar = dynamic_cast<TabToolbar*>(par);
-        if(toolbar)
-        {
-            borderColor = Qt::transparent;
-            const QString style = toolbar->GetStyle();
-            if(!style.isEmpty())
-            {
-                auto styleParams = tt::CreateStyle(style);
-                if(!styleParams->BorderColor.empty())
-                    borderColor = tt::CreateStyle(style)->BorderColor;
-            }
-            return;
-        }
-    } while(par);
 }
 
 }

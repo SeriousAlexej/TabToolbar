@@ -28,6 +28,8 @@ set(SRC_LIST
     ${INCROOT}/StyleTools.h
     ${SRCROOT}/Styles.cpp
     ${INCROOT}/Styles.h
+    ${SRCROOT}/ToolButtonStyle.cpp
+    ${SRCROOT}/ToolButtonStyle.h
 )
 source_group("" FILES ${SRC})
 
