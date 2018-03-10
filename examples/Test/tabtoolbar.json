@@ -136,12 +136,6 @@
               "menu":"dummyMenu"
             },
             {
-              "itemType":"action",
-              "type":"instantPopup",
-              "name":"actionPolypaint",
-              "menu":"dummyMenu"
-            },
-            {
               "itemType":"subgroup",
               "name":"group3Subgroup1",
               "aligned":true,
