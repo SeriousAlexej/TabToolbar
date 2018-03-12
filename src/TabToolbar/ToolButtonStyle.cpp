@@ -87,7 +87,7 @@ void TTToolButtonStyle::drawControl(ControlElement element, const QStyleOption* 
                             proxy()->drawItemPixmap(p, QStyle::visualRect(opt->direction, rect, pr), Qt::AlignTop | Qt::AlignHCenter, pm);
                         alignment |= Qt::AlignTop | Qt::AlignHCenter;
                     }
-                    tr.translate(shiftX, shiftY + 1);
+                    tr.translate(shiftX, shiftY);
                     proxy()->drawItemText(p, QStyle::visualRect(opt->direction, rect, tr), alignment, toolbutton->palette,
                                           toolbutton->state & State_Enabled, toolbutton->text,
                                           QPalette::ButtonText);
