@@ -112,6 +112,7 @@ TabToolbar* Builder::CreateTabToolbar(const QString& configPath)
         QMenu* menu = new QMenu((QWidget*)parent());
         menu->setObjectName(menuObject["name"].toString());
         menusMap[menu->objectName()] = menu;
+        guiWidgets[menu->objectName()] = menu;
         QList<QAction*> actionsList;
         const QJsonArray menuActions = menuObject["actions"].toArray();
         for(int j=0; j<menuActions.size(); j++)
