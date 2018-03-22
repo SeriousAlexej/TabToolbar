@@ -19,10 +19,11 @@ Features:
 Styles:
 -------------
 
-TabToolbar comes with three predefined styles:
+TabToolbar comes with four predefined styles:
   - **Vienna** (default for Windows 7 OS)
   - **Threshold** (default for all Windows >= 8 OSes)
   - **Kool** (default for Unix-like systems)
+  - **White Mercy** a simple white reskin of Threshold style
 
 All these styles use current OS palette and thus look great with any theme (light, dark, you name it).
 Each style can be used on any OS.
@@ -40,6 +41,10 @@ Kool style on Manjaro KDE with Breeze Dark theme:
 Threshold style on Manjaro LXQt with gtk2 theme:
 
 ![Threshold style on Manjaro LXQt with gtk2 theme](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/lxqt.png)
+
+White Mercy style on Windows 10:
+
+![White Mercy style on Windows 10](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/win10mercy.png)
 
 Building
 -------------
