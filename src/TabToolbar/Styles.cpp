@@ -271,6 +271,24 @@ struct DefaultStylesRegistrar
             params->HideArrowColor             = lcomb(p.text, p.light, 0.62f);
             return params;
         });
+
+        RegisterStyle("White Mercy", [dimmed]()
+        {
+            StyleParams* params = CreateStyle(g_styleThreshold).release();
+            params->TabUnselectedColor       = params->PaneColor;
+            params->PaneColor                = params->ToolbarBackgroundColor;
+            params->TabSelectedColor         = params->PaneColor;
+            params->BorderColor              = dimmed(params->BorderColor, 0.1f);
+            params->TabHoverBorderColorTop   = params->BorderColor;
+            params->TabHoverBorderColorSide  = params->BorderColor;
+            params->SeparatorColor           = {{0.0f,   Qt::transparent},
+                                                {0.05f,  Qt::transparent},
+                                                {0.051f, params->BorderColor},
+                                                {0.95f,  params->BorderColor},
+                                                {0.951f, Qt::transparent},
+                                                {1.0f,   Qt::transparent}};
+            return params;
+        });
     }
 };
 

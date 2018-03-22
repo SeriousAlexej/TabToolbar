@@ -158,11 +158,12 @@ QString GetDefaultStyle()
     const int dotIndex = versionStr.indexOf('.');
     if(dotIndex != -1)
         versionStr = versionStr.left(dotIndex + 2);
+    versionStr.replace('.', '0');
     bool ok = false;
     const double versionDouble = QLocale().toDouble(versionStr, &ok);
     if(!ok)
         return g_styleKool;
-    if(versionDouble >= 6.2)
+    if(versionDouble >= 602)
         return g_styleThreshold;
     return g_styleVienna;
 #endif
