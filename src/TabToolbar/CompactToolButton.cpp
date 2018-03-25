@@ -38,7 +38,6 @@ class TTOverlayToolButton : public QToolButton
 public:
    TTOverlayToolButton(QWidget* parent) : QToolButton(parent)
     {
-       setAutoRaise(true);
        setAttribute(Qt::WA_NoSystemBackground);
        setAttribute(Qt::WA_TranslucentBackground);
        setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -69,7 +68,8 @@ protected:
        QStylePainter sp(this);
        QStyleOptionToolButton opt;
        initStyleOption(&opt);
-       opt.state |= QStyle::State_MouseOver;
+       opt.state |= QStyle::State_MouseOver | QStyle::State_AutoRaise | QStyle::State_Raised;
+       opt.activeSubControls |= QStyle::SC_ToolButton;
        sp.drawComplexControl(QStyle::CC_ToolButton, opt);
    }
 };
