@@ -36,6 +36,7 @@ TabToolbar::TabToolbar(QWidget* parent, unsigned _groupMaxHeight, unsigned _grou
     groupRowCount(_groupRowCount),
     groupMaxHeight(_groupMaxHeight)
 {
+    setObjectName("TabToolbar");
     tempShowTimer.setSingleShot(true);
     tempShowTimer.setInterval(QApplication::doubleClickInterval());
 
@@ -146,6 +147,7 @@ void TabToolbar::SetStyle(const QString& styleName)
     style.reset(CreateStyle(styleName).release());
     setStyleSheet(GetSheetForStyle(*style));
     ignoreStyleEvent = false;
+    emit StyleChanged();
 }
 
 QString TabToolbar::GetStyle() const
@@ -208,6 +210,16 @@ void TabToolbar::CurrentTabChanged(int index)
     {
         currentIndex = index;
     }
+}
+
+int TabToolbar::CurrentTab() const
+{
+    return currentIndex;
+}
+
+void TabToolbar::SetCurrentTab(int index)
+{
+    tabBar->setCurrentIndex(index);
 }
 
 void TabToolbar::HideAt(int index)

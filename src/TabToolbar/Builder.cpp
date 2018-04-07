@@ -43,6 +43,11 @@ QWidget* Builder::operator[](const QString& widgetName) const
 
 void Builder::SetCustomWidgetCreator(const QString& name, const std::function<QWidget*()>& creator)
 {
+    customWidgetCreators[name] = [creator](const QJsonObject&) { return creator(); };
+}
+
+void Builder::SetCustomWidgetCreator(const QString& name, const std::function<QWidget*(const QJsonObject&)>& creator)
+{
     customWidgetCreators[name] = creator;
 }
 
@@ -71,7 +76,7 @@ TabToolbar* Builder::CreateTabToolbar(const QString& configPath)
     {
         if(!customWidgetCreators.contains(name))
             throw std::logic_error(std::string("Unknown item type: ") + name.toStdString());
-        QWidget* w = customWidgetCreators[name]();
+        QWidget* w = customWidgetCreators[name](item);
         if(item.contains("name"))
         {
             w->setObjectName(item["name"].toString());

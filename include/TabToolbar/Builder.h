@@ -26,6 +26,8 @@
 #include <functional>
 #include <TabToolbar/API.h>
 
+class QJsonObject;
+
 namespace tt
 {
 
@@ -39,12 +41,13 @@ public:
 
     TabToolbar* CreateTabToolbar(const QString& configPath);
     void        SetCustomWidgetCreator(const QString& name, const std::function<QWidget*()>& creator);
+    void        SetCustomWidgetCreator(const QString& name, const std::function<QWidget*(const QJsonObject&)>& creator);
 
     QWidget*    operator[](const QString& widgetName) const;
 
 private:
     QMap<QString, QWidget*> guiWidgets;
-    QMap<QString, std::function<QWidget*()>> customWidgetCreators;
+    QMap<QString, std::function<QWidget*(const QJsonObject&)>> customWidgetCreators;
 };
 
 }

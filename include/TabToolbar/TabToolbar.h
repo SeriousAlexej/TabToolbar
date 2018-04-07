@@ -48,11 +48,14 @@ public:
     QString  GetStyle() const;
     unsigned RowCount() const;
     unsigned GroupMaxHeight() const;
+    int      CurrentTab() const;
+    void     SetCurrentTab(int index);
 
 signals:
     void     Minimized();
     void     Maximized();
     void     SpecialTabClicked();
+    void     StyleChanged();
 
 private slots:
     void     FocusChanged(QWidget* old, QWidget* now);

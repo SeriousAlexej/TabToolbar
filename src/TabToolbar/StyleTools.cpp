@@ -15,12 +15,13 @@
     You should have received a copy of the GNU Lesser General Public License
     along with TabToolbar.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <stdexcept>
 #include <QMetaProperty>
 #include <QFile>
 #include <QSysInfo>
 #include <QMap>
 #include <QLocale>
+#include <stdexcept>
+#include <cstddef>
 #include <TabToolbar/StyleTools.h>
 
 namespace tt
@@ -51,7 +52,7 @@ static QString FormatColor(const QColor& col)
 
 static QString FormatColor(const std::vector<Color>& colors)
 {
-    const int sz = colors.size();
+    const std::size_t sz = colors.size();
     if(sz == 1)
         return FormatColor(colors[0].value);
 
