@@ -41,13 +41,11 @@ public:
     void        AddSeparator();
     SubGroup*   AddSubGroup(SubGroup::Align align);
     void        AddWidget(QWidget* widget);
-    void        UseCompactButtons(bool use);
 
 private:
     QFrame*     CreateSeparator();
 
     QHBoxLayout* innerLayout;
-    bool         useCompactButtons;
 };
 
 }

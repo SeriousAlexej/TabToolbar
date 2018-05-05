@@ -126,14 +126,9 @@ void Group::AddSeparator()
     innerLayout->addWidget(CreateSeparator());
 }
 
-void Group::UseCompactButtons(bool use)
-{
-    useCompactButtons = use;
-}
-
 void Group::AddAction(QToolButton::ToolButtonPopupMode type, QAction* action, QMenu* menu)
 {
-    if(type == QToolButton::MenuButtonPopup && useCompactButtons)
+    if(type == QToolButton::MenuButtonPopup)
     {
         innerLayout->addWidget(new CompactToolButton(action, menu, this));
     }

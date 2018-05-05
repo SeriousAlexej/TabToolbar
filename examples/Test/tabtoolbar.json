@@ -2,7 +2,6 @@
   "groupHeight":75,
   "groupRowCount":3,
   "specialTab":true,
-  "compactButtons":true,
   "cornerActions":[
     "actionHelp"
   ],
@@ -11,6 +10,7 @@
       "name":"dummyMenu",
       "actions":[
         "actionDummy",
+        "separator",
         "actionHelp"
       ]
     }
@@ -59,21 +59,18 @@
             {
               "itemType":"action",
               "type":"delayedPopup",
-              "name":"actionOpen",
-              "menu":null
+              "name":"actionOpen"
             },
             { "itemType":"separator" },
             {
               "itemType":"action",
               "type":"delayedPopup",
-              "name":"actionSave",
-              "menu":null
+              "name":"actionSave"
             },
             {
               "itemType":"action",
               "type":"delayedPopup",
-              "name":"actionSaveAs",
-              "menu":null
+              "name":"actionSaveAs"
             }
           ]
         },
@@ -106,14 +103,12 @@
                 {
                   "itemType":"action",
                   "type":"delayedPopup",
-                  "name":"actionUndo",
-                  "menu":null
+                  "name":"actionUndo"
                 },
                 {
                   "itemType":"action",
                   "type":"delayedPopup",
-                  "name":"actionRedo",
-                  "menu":null
+                  "name":"actionRedo"
                 },
                 {
                   "itemType":"action",
@@ -145,8 +140,7 @@
                   "actions":[
                     {
                       "type":"delayedPopup",
-                      "name":"actionSave",
-                      "menu":null
+                      "name":"actionSave"
                     },
                     {
                       "type":"instantPopup",
@@ -165,13 +159,11 @@
                   "actions":[
                     {
                       "type":"delayedPopup",
-                      "name":"actionUndo",
-                      "menu":null
+                      "name":"actionUndo"
                     },
                     {
                       "type":"delayedPopup",
-                      "name":"actionRedo",
-                      "menu":null
+                      "name":"actionRedo"
                     },
                     {
                       "type":"instantPopup",
@@ -199,8 +191,7 @@
                 {
                   "itemType":"action",
                   "type":"delayedPopup",
-                  "name":"actionSaveAs",
-                  "menu":null
+                  "name":"actionSaveAs"
                 }
               ]
             }
@@ -219,8 +210,7 @@
             {
               "itemType":"action",
               "type":"delayedPopup",
-              "name":"actionHelp",
-              "menu":null
+              "name":"actionHelp"
             }
           ]
         }
