@@ -1,10 +1,15 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/logo/logotype-a.png">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/screen.png">
+</p>
+
+-------------
+
 [![Build status](https://ci.appveyor.com/api/projects/status/03acxnds340jgnm1?svg=true)](https://ci.appveyor.com/project/SeriousAlexej/tabtoolbar)
 [![Build Status](https://travis-ci.org/SeriousAlexej/TabToolbar.svg?branch=master)](https://travis-ci.org/SeriousAlexej/TabToolbar)
-
-![TabToolbar](https://github.com/Tobaloidee/TabToolbar/blob/master/screenshots/logo/logotype-a.png)
-
-
-![screenshot of TabToolbar](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/screen.png)
 
 As stated above, **TabToolbar** is a small library, meant to be used with **Qt**,
 that provides a few classes for creating of tabbed toolbars.
@@ -30,21 +35,26 @@ Each style can be used on any OS.
 
 Some examples:
 
+<p align="center">
 Vienna style on Windows 7:
-
-![Vienna style on Windows 7](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/win7.png)
-
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/win7.png">
+</p>
+<p align="center">
 Kool style on Manjaro KDE with Breeze Dark theme:
-
-![Kool style on Manjaro KDE with Breeze Dark theme](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/kde.png)
-
+  <img src="https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/kde.png">
+</p>
+<p align="center">
 Threshold style on Manjaro LXQt with gtk2 theme:
-
-![Threshold style on Manjaro LXQt with gtk2 theme](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/lxqt.png)
-
+  <img src="https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/lxqt.png">
+</p>
+<p align="center">
 White Mercy style on Windows 10:
-
-![White Mercy style on Windows 10](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/win10mercy.png)
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/win10mercy.png">
+</p>
 
 Building
 -------------
@@ -65,3 +75,4 @@ License
 
 TabToolbar uses **LGPL** license either version **3** or any later version.
 
+TabToolbar logo generously provided by ![Tobaloidee](https://github.com/Tobaloidee)
