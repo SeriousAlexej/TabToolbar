@@ -1,8 +1,8 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/03acxnds340jgnm1?svg=true)](https://ci.appveyor.com/project/SeriousAlexej/tabtoolbar)
 [![Build Status](https://travis-ci.org/SeriousAlexej/TabToolbar.svg?branch=master)](https://travis-ci.org/SeriousAlexej/TabToolbar)
 
-TabToolbar
-=====
+![TabToolbar](https://github.com/Tobaloidee/TabToolbar/blob/master/screenshots/logo/logotype-a.png)
+
 
 ![screenshot of TabToolbar](https://raw.githubusercontent.com/SeriousAlexej/TabToolbar/master/screenshots/screen.png)
 
