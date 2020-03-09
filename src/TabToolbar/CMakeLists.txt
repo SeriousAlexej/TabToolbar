@@ -31,7 +31,7 @@ set(SRC_LIST
     ${SRCROOT}/ToolButtonStyle.cpp
     ${SRCROOT}/ToolButtonStyle.h
 )
-source_group("" FILES ${SRC})
+source_group("" FILES ${SRC_LIST})
 
 set(RESOURCES
     ${SRCROOT}/StyleTemplate.qrc
