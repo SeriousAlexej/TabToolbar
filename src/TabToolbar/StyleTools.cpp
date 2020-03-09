@@ -191,14 +191,14 @@ float GetScaleFactor(const QWidget& widget)
     return scr->logicalDotsPerInchY() / defaultDpi;
 }
 
-float GetPixelMetric(QStyle::PixelMetric metric)
+int GetPixelMetric(QStyle::PixelMetric metric)
 {
     switch(metric)
     {
     case QStyle::PM_SmallIconSize:
-        return 16.0f;
+        return 16;
     case QStyle::PM_LargeIconSize:
-        return 32.0f;
+        return 32;
     default:
         return QApplication::style()->pixelMetric(metric);
     }

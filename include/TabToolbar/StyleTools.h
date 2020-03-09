@@ -38,7 +38,7 @@ TT_API std::unique_ptr<StyleParams> CreateStyle(const QString& styleName);
 TT_API QString                      GetDefaultStyle();
 
 float                               GetScaleFactor(const QWidget& widget);
-float                               GetPixelMetric(QStyle::PixelMetric metric);
+int                                 GetPixelMetric(QStyle::PixelMetric metric);
 
 }
 #endif
