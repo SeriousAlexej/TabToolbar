@@ -24,6 +24,7 @@
 #include <QApplication>
 #include <QFrame>
 #include <QTimer>
+#include <QScreen>
 #include <TabToolbar/TabToolbar.h>
 #include <TabToolbar/Page.h>
 #include <TabToolbar/Styles.h>
@@ -138,7 +139,7 @@ unsigned TabToolbar::RowCount() const
 
 unsigned TabToolbar::GroupMaxHeight() const
 {
-    return groupMaxHeight;
+    return groupMaxHeight * GetScaleFactor(*this);
 }
 
 void TabToolbar::SetStyle(const QString& styleName)
@@ -289,4 +290,17 @@ Page* TabToolbar::AddPage(const QString& pageName)
     QObject::connect(page, &Page::Showing, this, &TabToolbar::ShowTab);
     tabBar->addTab(page, pageName);
     return page;
+}
+
+TabToolbar* tt::_FindTabToolbarParent(QWidget& startingWidget)
+{
+    QObject* par = &startingWidget;
+    do
+    {
+        par = par->parent();
+        if(auto* tt = dynamic_cast<TabToolbar*>(par))
+            return tt;
+    } while(par);
+
+    return nullptr;
 }

@@ -90,5 +90,7 @@ private:
     friend class Page;
 };
 
+TabToolbar* _FindTabToolbarParent(QWidget& startingWidget);
+
 }
 #endif

@@ -15,11 +15,19 @@
     You should have received a copy of the GNU Lesser General Public License
     along with TabToolbar.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <QMetaProperty>
+#include <QApplication>
 #include <QFile>
-#include <QSysInfo>
-#include <QMap>
 #include <QLocale>
+#include <QMap>
+#include <QMetaProperty>
+#include <QScreen>
+#include <QStyle>
+#include <QSysInfo>
+#include <QtGlobal>
+#include <QWidget>
+#if (QT_VERSION <= QT_VERSION_CHECK(5, 10, 0))
+#include <QDesktopWidget>
+#endif
 #include <stdexcept>
 #include <cstddef>
 #include <TabToolbar/StyleTools.h>
@@ -50,7 +58,7 @@ static QString FormatColor(const QColor& col)
                       .arg(col.alpha());
 }
 
-static QString FormatColor(const std::vector<Color>& colors)
+static QString FormatColor(const Colors& colors)
 {
     const std::size_t sz = colors.size();
     if(sz == 1)
@@ -168,6 +176,32 @@ QString GetDefaultStyle()
         return g_styleThreshold;
     return g_styleVienna;
 #endif
+}
+
+float GetScaleFactor(const QWidget& widget)
+{
+#if (QT_VERSION <= QT_VERSION_CHECK(5, 10, 0))
+    auto scrNumber = QApplication::desktop()->screenNumber(widget.mapToGlobal(QPoint(0,0)));
+    auto screens = QGuiApplication::screens();
+    QScreen* scr = screens.at(scrNumber);
+#else
+    QScreen* scr = QGuiApplication::screenAt(widget.mapToGlobal(QPoint(0,0)));
+#endif
+    const float defaultDpi = 96.0f;
+    return scr->logicalDotsPerInchY() / defaultDpi;
+}
+
+int GetPixelMetric(QStyle::PixelMetric metric)
+{
+    switch(metric)
+    {
+    case QStyle::PM_SmallIconSize:
+        return 16;
+    case QStyle::PM_LargeIconSize:
+        return 32;
+    default:
+        return QApplication::style()->pixelMetric(metric);
+    }
 }
 
 }//namespace tt

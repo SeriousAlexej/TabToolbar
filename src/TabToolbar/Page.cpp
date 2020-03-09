@@ -91,14 +91,12 @@ Group* Page::AddGroup(const QString& name)
 {
     Group* grp = new Group(name, innerArea);
     innerLayout->insertWidget(innerLayout->count()-1, grp);
-    QObject* parent = this;
-    TabToolbar* tt = nullptr;
-    do
-    {
-        parent = parent->parent();
-        tt = dynamic_cast<TabToolbar*>(parent);
-    } while(tt == nullptr);
-    tt->AdjustVerticalSize(grp->height());
+
+    auto* parentTT = _FindTabToolbarParent(*this);
+    if (!parentTT)
+        throw std::runtime_error("Page should be constructed inside TabToolbar!");
+
+    parentTT->AdjustVerticalSize(grp->height());
     return grp;
 }
 

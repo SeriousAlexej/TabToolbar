@@ -33,14 +33,59 @@ struct TT_API Color
     float  coefficient;
     QColor value;
 };
-class TT_API Colors : public std::vector<Color>
+class TT_API Colors
 {
+private:
+    using TVectorType = std::vector<Color>;
+
 public:
     Colors() = default;
-    Colors(const Qt::GlobalColor& c) : std::vector<Color>({{1.0f, c}}) {}
-    Colors(const QColor& c) : std::vector<Color>({{1.0f, c}}) {}
-    Colors(const std::initializer_list<Color>& c) : std::vector<Color>(c) {}
-    operator QColor () const { return this->at(0).value; }
+    Colors(const Qt::GlobalColor& c)
+        : m_colors(TVectorType({{1.0f, c}})) {}
+    Colors(const QColor& c)
+        : m_colors(TVectorType({{1.0f, c}})) {}
+    Colors(const std::initializer_list<Color>& c)
+        : m_colors(TVectorType(c)) {}
+
+    operator QColor () const
+    {
+        return m_colors.at(0).value;
+    }
+    bool operator != (const Colors& c) const
+    {
+        return m_colors != c.m_colors;
+    }
+    Color& operator [] (std::size_t i)
+    {
+        return m_colors[i];
+    }
+    const Color& operator [] (std::size_t i) const
+    {
+        return m_colors[i];
+    }
+    TVectorType::size_type size() const
+    {
+        return m_colors.size();
+    }
+    TVectorType::iterator begin()
+    {
+        return m_colors.begin();
+    }
+    TVectorType::iterator end()
+    {
+        return m_colors.end();
+    }
+    TVectorType::const_iterator begin() const
+    {
+        return m_colors.cbegin();
+    }
+    TVectorType::const_iterator end() const
+    {
+        return m_colors.cend();
+    }
+
+private:
+    TVectorType m_colors;
 };
 
 #define TT_PROPERTY(type, name)\

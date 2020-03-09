@@ -18,6 +18,7 @@
 #ifndef TT_STYLE_TOOLS_H
 #define TT_STYLE_TOOLS_H
 #include <QStringList>
+#include <QStyle>
 #include <functional>
 #include <memory>
 #include <TabToolbar/API.h>
@@ -35,6 +36,9 @@ TT_API QString                      GetSheetForStyle(const StyleParams& style);
 TT_API QStringList                  GetRegisteredStyles();
 TT_API std::unique_ptr<StyleParams> CreateStyle(const QString& styleName);
 TT_API QString                      GetDefaultStyle();
+
+float                               GetScaleFactor(const QWidget& widget);
+int                                 GetPixelMetric(QStyle::PixelMetric metric);
 
 }
 #endif
