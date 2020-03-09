@@ -26,8 +26,11 @@
 #include <QStyle>
 #include <QPainter>
 #include <QProxyStyle>
+#include <QScreen>
 #include <QStyleOptionToolButton>
 #include <TabToolbar/Group.h>
+#include <TabToolbar/Styles.h>
+#include <TabToolbar/StyleTools.h>
 #include <TabToolbar/SubGroup.h>
 #include <TabToolbar/TabToolbar.h>
 #include "CompactToolButton.h"
@@ -80,23 +83,12 @@ Group::Group(const QString& name, QWidget* parent) : QFrame(parent)
 
     outerLayout->addWidget(groupName);
 
-    unsigned groupMaxHeight;
-    unsigned rowCount;
-    bool found = false;
-    QObject* par = this;
-    do
-    {
-        par = par->parent();
-        const TabToolbar* tt = dynamic_cast<TabToolbar*>(par);
-        if(tt)
-        {
-            groupMaxHeight = tt->GroupMaxHeight();
-            rowCount = tt->RowCount();
-            found = true;
-        }
-    } while(par && !found);
-    if(!found)
+    const auto* parentTT = _FindTabToolbarParent(*this);
+    if (!parentTT)
         throw std::runtime_error("Group should be constructed inside TabToolbar!");
+
+    unsigned groupMaxHeight = parentTT->GroupMaxHeight();
+    unsigned rowCount = parentTT->RowCount();
     const unsigned height = groupMaxHeight + groupName->height() + rowCount - 1;
     setMinimumHeight(height);
     setMaximumHeight(height);
@@ -134,7 +126,7 @@ void Group::AddAction(QToolButton::ToolButtonPopupMode type, QAction* action, QM
     }
     else
     {
-        const int iconSize = QApplication::style()->pixelMetric(QStyle::PM_LargeIconSize);
+        const int iconSize = GetPixelMetric(QStyle::PM_LargeIconSize) * GetScaleFactor(*this);
         QToolButton* btn = new QToolButton(this);
         btn->setProperty("TTInternal", QVariant(true));
         btn->setAutoRaise(true);

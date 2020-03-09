@@ -33,14 +33,26 @@ struct TT_API Color
     float  coefficient;
     QColor value;
 };
-class TT_API Colors : public std::vector<Color>
+class TT_API Colors
 {
 public:
     Colors() = default;
-    Colors(const Qt::GlobalColor& c) : std::vector<Color>({{1.0f, c}}) {}
-    Colors(const QColor& c) : std::vector<Color>({{1.0f, c}}) {}
-    Colors(const std::initializer_list<Color>& c) : std::vector<Color>(c) {}
-    operator QColor () const { return this->at(0).value; }
+    Colors(const Qt::GlobalColor& c) : m_colors(std::vector<Color>({{1.0f, c}})) {}
+    Colors(const QColor& c) : m_colors(std::vector<Color>({{1.0f, c}})) {}
+    Colors(const std::initializer_list<Color>& c) : m_colors(std::vector<Color>(c)) {}
+
+    operator QColor () const { return m_colors.at(0).value; }
+    bool operator != (const Colors& c) const { return m_colors != c.m_colors; }
+    Color& operator [] (std::size_t i) { return m_colors[i]; }
+    const Color& operator [] (std::size_t i) const { return m_colors[i]; }
+    auto size() const { return m_colors.size(); }
+    auto begin() { return m_colors.begin(); }
+    auto end() { return m_colors.end(); }
+    auto begin() const { return m_colors.cbegin(); }
+    auto end() const { return m_colors.cend(); }
+
+private:
+    std::vector<Color> m_colors;
 };
 
 #define TT_PROPERTY(type, name)\

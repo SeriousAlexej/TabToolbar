@@ -18,7 +18,10 @@
 #include <QMenu>
 #include <QAction>
 #include <QSize>
+#include <QScreen>
 #include <QSpacerItem>
+#include <TabToolbar/Styles.h>
+#include <TabToolbar/StyleTools.h>
 #include <TabToolbar/SubGroup.h>
 #include <TabToolbar/TabToolbar.h>
 
@@ -43,7 +46,7 @@ SubGroup::SubGroup(Align align, QWidget* parent) : QFrame(parent)
 
 void SubGroup::AddAction(QToolButton::ToolButtonPopupMode type, QAction* action, QMenu* menu)
 {
-    const int iconSize = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
+    const int iconSize = GetPixelMetric(QStyle::PM_SmallIconSize) * GetScaleFactor(*this);
     QFrame* frame = ConstructInnerFrame(0);
 
     QToolButton* btn = new QToolButton(this);
@@ -72,7 +75,7 @@ void SubGroup::AddWidget(QWidget* widget)
 
 void SubGroup::AddHorizontalButtons(const std::vector<ActionParams>& params)
 {
-    const int iconSize = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
+    const int iconSize = GetPixelMetric(QStyle::PM_SmallIconSize) * GetScaleFactor(*this);
     QFrame* frame = ConstructInnerFrame(0);
     frame->setProperty("TTHorizontalFrame", QVariant(true));
 
@@ -96,23 +99,13 @@ void SubGroup::AddHorizontalButtons(const std::vector<ActionParams>& params)
 
 QFrame* SubGroup::ConstructInnerFrame(int spacing)
 {
-    unsigned groupMaxHeight;
-    unsigned rowCount;
-    bool found = false;
-    QObject* par = this;
-    do
-    {
-        par = par->parent();
-        const TabToolbar* tt = dynamic_cast<TabToolbar*>(par);
-        if(tt)
-        {
-            groupMaxHeight = tt->GroupMaxHeight();
-            rowCount = tt->RowCount();
-            found = true;
-        }
-    } while(par && !found);
-    if(!found)
-        throw std::runtime_error("SubGroup should be constructed inside TabToolbar!");
+
+    const auto* parentTT = _FindTabToolbarParent(*this);
+    if (!parentTT)
+        throw std::runtime_error("Group should be constructed inside TabToolbar!");
+
+    unsigned groupMaxHeight = parentTT->GroupMaxHeight();
+    unsigned rowCount = parentTT->RowCount();
 
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::NoFrame);
