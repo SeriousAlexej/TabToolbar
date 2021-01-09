@@ -24,7 +24,7 @@
 #include <TabToolbar/StyleTools.h>
 #include <TabToolbar/SubGroup.h>
 #include <TabToolbar/TabToolbar.h>
-
+#include <stdexcept>
 using namespace tt;
 
 SubGroup::SubGroup(Align align, QWidget* parent) : QFrame(parent)

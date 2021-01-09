@@ -26,7 +26,7 @@
 #include <TabToolbar/TabToolbar.h>
 #include <TabToolbar/Page.h>
 #include <TabToolbar/Group.h>
-
+#include <stdexcept>
 using namespace tt;
 
 namespace
