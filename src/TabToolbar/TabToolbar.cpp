@@ -25,11 +25,11 @@
 #include <QFrame>
 #include <QTimer>
 #include <QScreen>
+#include <stdexcept>
 #include <TabToolbar/TabToolbar.h>
 #include <TabToolbar/Page.h>
 #include <TabToolbar/Styles.h>
 #include <TabToolbar/StyleTools.h>
-#include <stdexcept>
 using namespace tt;
 
 TabToolbar::TabToolbar(QWidget* parent, unsigned _groupMaxHeight, unsigned _groupRowCount) :
