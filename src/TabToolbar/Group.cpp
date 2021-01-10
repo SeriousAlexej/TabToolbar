@@ -28,6 +28,7 @@
 #include <QProxyStyle>
 #include <QScreen>
 #include <QStyleOptionToolButton>
+#include <stdexcept>
 #include <TabToolbar/Group.h>
 #include <TabToolbar/Styles.h>
 #include <TabToolbar/StyleTools.h>
@@ -35,7 +36,6 @@
 #include <TabToolbar/TabToolbar.h>
 #include "CompactToolButton.h"
 #include "ToolButtonStyle.h"
-
 using namespace tt;
 
 Group::Group(const QString& name, QWidget* parent) : QFrame(parent)
