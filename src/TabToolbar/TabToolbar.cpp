@@ -30,6 +30,7 @@
 #include <TabToolbar/Page.h>
 #include <TabToolbar/Styles.h>
 #include <TabToolbar/StyleTools.h>
+
 using namespace tt;
 
 TabToolbar::TabToolbar(QWidget* parent, unsigned _groupMaxHeight, unsigned _groupRowCount) :
