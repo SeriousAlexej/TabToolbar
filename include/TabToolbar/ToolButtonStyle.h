@@ -18,6 +18,7 @@
 #ifndef TT_TOOL_BUTTON_STYLE
 #define TT_TOOL_BUTTON_STYLE
 #include <QProxyStyle>
+#include <TabToolbar/API.h>
 
 class QStyleOptionToolButton;
 
@@ -25,7 +26,7 @@ namespace tt
 {
 
 //this class uses part of Qt's source code to align text and icon on ToolButton
-class TTToolButtonStyle : public QProxyStyle
+class TT_API TTToolButtonStyle : public QProxyStyle
 {
 public:
     void drawControl(ControlElement element, const QStyleOption* opt, QPainter* p, const QWidget* widget) const override;

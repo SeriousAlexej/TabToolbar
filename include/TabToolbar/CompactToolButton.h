@@ -19,6 +19,7 @@
 #define TT_COMPACT_TOOL_BUTTON_H
 #include <QFrame>
 #include <QColor>
+#include <TabToolbar/API.h>
 
 class QAction;
 class QMenu;
@@ -27,7 +28,7 @@ class QToolButton;
 namespace tt
 {
 
-class CompactToolButton: public QFrame
+class TT_API CompactToolButton: public QFrame
 {
     Q_OBJECT
 public:

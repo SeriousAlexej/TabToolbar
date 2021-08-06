@@ -29,8 +29,8 @@
 #include <QScreen>
 #include <TabToolbar/StyleTools.h>
 #include <TabToolbar/TabToolbar.h>
-#include "CompactToolButton.h"
-#include "ToolButtonStyle.h"
+#include "TabToolbar/CompactToolButton.h"
+#include "TabToolbar/ToolButtonStyle.h"
 
 namespace
 {

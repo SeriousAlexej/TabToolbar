@@ -17,7 +17,7 @@
 */
 #include <QPainter>
 #include <QStyleOptionToolButton>
-#include "ToolButtonStyle.h"
+#include "TabToolbar/ToolButtonStyle.h"
 
 using namespace tt;
 

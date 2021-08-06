@@ -38,14 +38,14 @@ SOURCES += \
 HEADERS += \
     ../include/TabToolbar/API.h \
     ../include/TabToolbar/Builder.h \
+    ../include/TabToolbar/CompactToolButton.h \
     ../include/TabToolbar/Group.h \
     ../include/TabToolbar/Page.h \
     ../include/TabToolbar/StyleTools.h \
     ../include/TabToolbar/Styles.h \
     ../include/TabToolbar/SubGroup.h \
     ../include/TabToolbar/TabToolbar.h \
-    ../src/TabToolbar/CompactToolButton.h \
-    ../src/TabToolbar/ToolButtonStyle.h
+    ../include/TabToolbar/ToolButtonStyle.h
 
 RESOURCES += \
     ../src/TabToolbar/StyleTemplate.qrc
