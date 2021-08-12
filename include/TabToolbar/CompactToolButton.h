@@ -32,7 +32,7 @@ class TT_API CompactToolButton: public QFrame
 {
     Q_OBJECT
 public:
-    CompactToolButton(QAction* action, QMenu* menu, QWidget* parent = nullptr);
+    explicit CompactToolButton(QAction* action, QMenu* menu, QWidget* parent = nullptr);
     virtual ~CompactToolButton() = default;
 
     void SetHover(bool hover);

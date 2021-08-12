@@ -29,6 +29,7 @@ namespace tt
 class TT_API TTToolButtonStyle : public QProxyStyle
 {
 public:
+    explicit TTToolButtonStyle(QObject * parent = nullptr);
     void drawControl(ControlElement element, const QStyleOption* opt, QPainter* p, const QWidget* widget) const override;
     void drawComplexControl(ComplexControl cc, const QStyleOptionComplex* opt, QPainter* p, const QWidget* widget) const override;
 };

@@ -21,6 +21,11 @@
 
 using namespace tt;
 
+TTToolButtonStyle::TTToolButtonStyle(QObject *parent)
+{
+    setParent(parent);
+}
+
 //redefine text alignment
 void TTToolButtonStyle::drawControl(ControlElement element, const QStyleOption* opt, QPainter* p, const QWidget* widget) const
 {
