@@ -155,8 +155,11 @@ CompactToolButton::CompactToolButton(QAction* action, QMenu* menu, QWidget* pare
     downButton->setPopupMode(QToolButton::InstantPopup);
     downButton->setMinimumHeight(25);
     downButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
-    downButton->setText(action->text());
-    downButton->setToolTip(action->toolTip());
+    if(action)
+    {
+        downButton->setText(action->text());
+        downButton->setToolTip(action->toolTip());
+    }
     downButton->setStyle(new TTToolButtonStyle());
 
     if(menu)
