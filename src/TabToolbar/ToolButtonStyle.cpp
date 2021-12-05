@@ -15,6 +15,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with TabToolbar.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include <QApplication>
 #include <QPainter>
 #include <QStyleOptionToolButton>
 #include "ToolButtonStyle.h"
