@@ -15,22 +15,34 @@
     You should have received a copy of the GNU Lesser General Public License
     along with TabToolbar.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef TT_TOOL_BUTTON_STYLE
-#define TT_TOOL_BUTTON_STYLE
-#include <QProxyStyle>
+#ifndef TT_COMPACT_TOOL_BUTTON_H
+#define TT_COMPACT_TOOL_BUTTON_H
+#include <QFrame>
+#include <QColor>
+#include <TabToolbar/API.h>
 
-class QStyleOptionToolButton;
+class QAction;
+class QMenu;
+class QToolButton;
 
 namespace tt
 {
 
-//this class uses part of Qt's source code to align text and icon on ToolButton
-class TTToolButtonStyle : public QProxyStyle
+class TT_API CompactToolButton: public QFrame
 {
+    Q_OBJECT
 public:
-    void drawControl(ControlElement element, const QStyleOption* opt, QPainter* p, const QWidget* widget) const override;
-    void drawComplexControl(ComplexControl cc, const QStyleOptionComplex* opt, QPainter* p, const QWidget* widget) const override;
+    explicit CompactToolButton(QAction* action, QMenu* menu, QWidget* parent = nullptr);
+    virtual ~CompactToolButton() = default;
+
+    void SetHover(bool hover);
+
+private:
+    QToolButton* upButton;
+    QToolButton* downButton;
+    QToolButton* overlay;
 };
 
 }
+
 #endif

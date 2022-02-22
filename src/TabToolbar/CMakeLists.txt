@@ -19,7 +19,7 @@ set(SRC_LIST
     ${SRCROOT}/Builder.cpp
     ${INCROOT}/Builder.h
     ${SRCROOT}/CompactToolButton.cpp
-    ${SRCROOT}/CompactToolButton.h
+    ${INCROOT}/CompactToolButton.h
     ${SRCROOT}/Group.cpp
     ${INCROOT}/Group.h
     ${SRCROOT}/SubGroup.cpp
@@ -29,7 +29,7 @@ set(SRC_LIST
     ${SRCROOT}/Styles.cpp
     ${INCROOT}/Styles.h
     ${SRCROOT}/ToolButtonStyle.cpp
-    ${SRCROOT}/ToolButtonStyle.h
+    ${INCROOT}/ToolButtonStyle.h
 )
 source_group("" FILES ${SRC_LIST})
 

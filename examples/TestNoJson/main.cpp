@@ -1,7 +1,7 @@
 /*
     TabToolbar - a small utility library for Qt, providing tabbed toolbars
-    Copyright (C) 2018 Oleksii Sierov
-
+	Copyright (C) 2018 Oleksii Sierov
+	
     TabToolbar is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -15,33 +15,14 @@
     You should have received a copy of the GNU Lesser General Public License
     along with TabToolbar.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef TT_COMPACT_TOOL_BUTTON_H
-#define TT_COMPACT_TOOL_BUTTON_H
-#include <QFrame>
-#include <QColor>
+#include <QApplication>
+#include "mainwindow.h"
 
-class QAction;
-class QMenu;
-class QToolButton;
-
-namespace tt
+int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+    CMainWindow w;
+    w.show();
 
-class CompactToolButton: public QFrame
-{
-    Q_OBJECT
-public:
-    CompactToolButton(QAction* action, QMenu* menu, QWidget* parent = nullptr);
-    virtual ~CompactToolButton() = default;
-
-    void SetHover(bool hover);
-
-private:
-    QToolButton* upButton;
-    QToolButton* downButton;
-    QToolButton* overlay;
-};
-
+    return a.exec();
 }
-
-#endif

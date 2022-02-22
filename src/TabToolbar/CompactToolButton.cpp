@@ -29,8 +29,8 @@
 #include <QScreen>
 #include <TabToolbar/StyleTools.h>
 #include <TabToolbar/TabToolbar.h>
-#include "CompactToolButton.h"
-#include "ToolButtonStyle.h"
+#include "TabToolbar/CompactToolButton.h"
+#include "TabToolbar/ToolButtonStyle.h"
 
 namespace
 {
@@ -127,6 +127,7 @@ CompactToolButton::CompactToolButton(QAction* action, QMenu* menu, QWidget* pare
     QFrame(parent)
 {
     overlay = new TTOverlayToolButton(this);
+    QStyle * s = new TTToolButtonStyle(this);
 
     const int iconSize = GetPixelMetric(QStyle::PM_LargeIconSize) * GetScaleFactor(*this);
     upButton = new QToolButton(this);
@@ -135,10 +136,10 @@ CompactToolButton::CompactToolButton(QAction* action, QMenu* menu, QWidget* pare
     upButton->setDefaultAction(action);
     upButton->setIconSize(QSize(iconSize, iconSize));
     upButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
-    upButton->setStyle(new TTToolButtonStyle());
+    upButton->setStyle(s);
     upButton->setMaximumHeight(iconSize + 5);
 
-    QVBoxLayout* l = new QVBoxLayout(this);
+    QBoxLayout* l = new QBoxLayout(QBoxLayout::TopToBottom,this);
     l->setMargin(0);
     l->setContentsMargins(0, 0, 0, 0);
     l->setSpacing(0);
@@ -155,9 +156,12 @@ CompactToolButton::CompactToolButton(QAction* action, QMenu* menu, QWidget* pare
     downButton->setPopupMode(QToolButton::InstantPopup);
     downButton->setMinimumHeight(25);
     downButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
-    downButton->setText(action->text());
-    downButton->setToolTip(action->toolTip());
-    downButton->setStyle(new TTToolButtonStyle());
+    if(action)
+    {
+        downButton->setText(action->text());
+        downButton->setToolTip(action->toolTip());
+    }
+    downButton->setStyle(s);
 
     if(menu)
     {
